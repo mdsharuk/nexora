@@ -1,6 +1,7 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
+import { Suspense } from "react";
 import { Button, Checkbox, ConfigProvider, Flex, Input, Radio, Typography } from "antd";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
@@ -8,7 +9,7 @@ import Footer from "@/components/layout/Footer";
 const formatPrice = (value: number) =>
   `${new Intl.NumberFormat("en-US").format(value)}৳`;
 
-export default function CheckoutPage() {
+function CheckoutContent() {
   const params = useSearchParams();
   const title = params.get("title") || "Your product";
   const price = Number(params.get("price")) || 0;
@@ -63,5 +64,13 @@ export default function CheckoutPage() {
       </main>
       <Footer />
     </ConfigProvider>
+  );
+}
+
+export default function CheckoutPage() {
+  return (
+    <Suspense fallback={<main className="checkout-page" />}>
+      <CheckoutContent />
+    </Suspense>
   );
 }
