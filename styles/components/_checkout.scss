@@ -1,0 +1,125 @@
+.checkout-page {
+  background: #f1f3f7;
+  padding: 28px 16px 48px;
+}
+
+.checkout-page__content {
+  max-width: 1140px;
+  margin: 0 auto;
+
+  > .ant-typography {
+    margin: 0 0 12px;
+  }
+}
+
+.checkout-page__notice {
+  margin-bottom: 12px;
+  padding: 10px 16px;
+  background: #fff0eb;
+  border-left: 3px solid #ff4400;
+  color: #8a2700;
+  font-size: 13px;
+}
+
+.checkout-page__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 340px;
+  gap: 16px;
+  align-items: start;
+}
+
+.checkout-page__options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: calc(100% - 356px);
+  margin-top: 16px;
+}
+
+.checkout-card {
+  padding: 16px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+
+  .ant-typography {
+    margin: 0 0 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eef0f3;
+  }
+}
+
+.checkout-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.checkout-span-full {
+  grid-column: 1 / -1;
+}
+
+.checkout-summary {
+  .ant-checkbox-wrapper {
+    display: flex;
+    margin-top: 12px;
+    font-size: 12px;
+  }
+}
+
+.checkout-summary__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid #eef0f3;
+  font-size: 13px;
+
+  strong {
+    text-align: right;
+  }
+}
+
+.checkout-summary__total {
+  font-size: 16px;
+
+  strong {
+    color: #ff4400;
+  }
+}
+
+.buy-now-summary {
+  display: grid;
+  gap: 8px;
+  min-width: 145px;
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  font-size: 12px;
+
+  span {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+  }
+}
+
+@media (max-width: 760px) {
+  .checkout-page__grid,
+  .checkout-page__options {
+    grid-template-columns: 1fr;
+    max-width: none;
+  }
+
+  .checkout-page__options {
+    margin-top: 16px;
+  }
+}
+
+@media (max-width: 460px) {
+  .checkout-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout-span-full {
+    grid-column: auto;
+  }
+}
