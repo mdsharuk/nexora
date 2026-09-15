@@ -41,13 +41,14 @@ const HeroBanner: React.FC = () => {
       <div className="container">
         <div className="hero-grid">
           <div className="hero-slider">
-            <div
-              className="hero-slides"
-              style={{ transform: `translateX(-${current * 100}%)` }}
-            >
-              {slides.map((slide) => (
-                <div key={slide.id} className="hero-slide">
-                  <Link href={slide.link} className="hero-slide-link">
+            <div className="hero-slides">
+              {slides.map((slide, index) => (
+                <div
+                  key={slide.id}
+                  className={`hero-slide ${index === current ? "is-active" : ""}`}
+                  aria-hidden={index !== current}
+                >
+                  <Link href={slide.link} className="hero-slide-link" tabIndex={index === current ? 0 : -1}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={slide.image}

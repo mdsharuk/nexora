@@ -13,7 +13,6 @@ import {
   Empty,
   Flex,
   Grid,
-  Image,
   Pagination,
   Row,
   Select,
@@ -228,8 +227,8 @@ function ProductCard({
           ) : null}
 
           <Link href={product.productUrl} aria-label={product.title}>
-            <Image
-              preview={false}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src={product.imageUrl}
               alt={product.title}
               style={{

@@ -120,6 +120,7 @@ $breakpoint-xs: 480px;
 
 // Search
 .search-bar {
+  position: relative;
   flex: 1;
   max-width: 600px;
 
@@ -193,6 +194,135 @@ $breakpoint-xs: 480px;
     svg {
       width: 20px;
       height: 20px;
+    }
+  }
+}
+
+// Search Dropdown
+.search-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin-top: 4px;
+  background: $bg-white;
+  border: 1px solid $border-color;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+.search-dropdown-tabs {
+  display: flex;
+  border-bottom: 1px solid $border-color;
+
+  .search-tab {
+    flex: 1;
+    padding: 10px 16px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-weight: 600;
+    color: $text-light;
+    cursor: pointer;
+    transition: all 0.2s;
+
+    &.active {
+      color: $primary-color;
+      background: rgba(255, 68, 0, 0.05);
+      border-bottom: 2px solid $primary-color;
+    }
+
+    &:hover {
+      color: $primary-color;
+    }
+  }
+}
+
+.search-dropdown-content {
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.search-loading,
+.search-no-results {
+  padding: 24px 16px;
+  text-align: center;
+  color: $text-light;
+  font-size: 14px;
+}
+
+.search-products-list {
+  .search-product-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 16px;
+    cursor: pointer;
+    transition: background 0.15s;
+
+    &:hover {
+      background: #f5f5f5;
+    }
+  }
+
+  .search-product-thumb {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border-radius: 4px;
+    background: #f9f9f9;
+  }
+
+  .search-product-info {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .search-product-title {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: $text-dark;
+    line-height: 1.4;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .search-product-prices {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .search-product-price {
+    font-size: 14px;
+    font-weight: 700;
+    color: #e02424;
+  }
+
+  .search-product-old-price {
+    font-size: 12px;
+    color: #999;
+    text-decoration: line-through;
+  }
+}
+
+.search-categories-list {
+  .search-category-item {
+    padding: 10px 16px;
+    font-size: 14px;
+    color: $text-dark;
+    cursor: pointer;
+    transition: background 0.15s;
+
+    &:hover {
+      background: #f5f5f5;
+      color: $primary-color;
     }
   }
 }
@@ -566,13 +696,17 @@ $breakpoint-xs: 480px;
   padding: 12px 0;
 
   @media (max-width: 767px) {
-    padding: 10px 0;
+    padding: 14px 0;
   }
 
   .container {
     max-width: 1320px;
     margin: 0 auto;
-    padding: 0;
+    padding: 0 16px;
+
+    @media (min-width: 768px) and (max-width: 1351px) {
+      padding: 0 24px;
+    }
   }
 
   .breadcrumb-list {
@@ -669,10 +803,7 @@ $breakpoint-xs: 480px;
 // ==================== MOBILE HEADER ====================
 .mobile-header {
   display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  position: relative;
   z-index: 1001;
   background: $bg-white;
   box-shadow: $shadow-sm;

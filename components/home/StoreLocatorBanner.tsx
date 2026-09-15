@@ -29,7 +29,7 @@ export default function StoreLocatorBanner() {
           </div>
         </div>
 
-        <Link href="/stores" className="store-locator-button">
+        <Link href="/contact" className="store-locator-button">
           <span>Find Our Store</span>
           <SearchIcon size={20} />
         </Link>
