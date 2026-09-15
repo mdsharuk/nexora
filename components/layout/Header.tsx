@@ -9,6 +9,7 @@ import BottomNav from "@/components/common/header-common/BottomNav";
 import Breadcrumb from "@/components/common/Breadcrumb/Breadcrumb";
 import type { BreadcrumbItem } from "@/components/common/Breadcrumb/Breadcrumb";
 import { menuData } from "@/modules/menuData";
+import PageStructuredData from "@/components/common/PageStructuredData";
 
 interface HeaderProps {
   breadcrumbs?: BreadcrumbItem[];
@@ -61,6 +62,7 @@ const Header: React.FC<HeaderProps> = ({ breadcrumbs }) => {
 
   return (
     <>
+      <PageStructuredData breadcrumbs={breadcrumbs} />
       <header className="header-wrapper">
         {isDesktop ? (
           <>

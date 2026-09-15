@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
   const productName = titleFromSlug(slug);
 
   return {
+    alternates: { canonical: `/product/${encodeURIComponent(slug)}` },
     title: `${productName} Price in Bangladesh | Nexora Tech`,
     description: `Buy ${productName} at best price in Bangladesh. Check specifications, reviews, and offers at Nexora Tech.`,
   };

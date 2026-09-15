@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import ServiceCenter from "@/components/service-center/ServiceCenter";
+import JsonLd from "@/components/common/JsonLd";
+import { pageSchema } from "@/modules/structuredData";
 
 export const metadata: Metadata = {
   title: "Service Center | Nexora Tech",
@@ -7,5 +9,5 @@ export const metadata: Metadata = {
 };
 
 export default function ServiceCenterPage() {
-  return <ServiceCenter />;
+  return <><JsonLd id="page-jsonld" data={pageSchema("/service-center", "Service Center")} /><ServiceCenter /></>;
 }

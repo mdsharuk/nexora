@@ -2,6 +2,9 @@
 
 import { useState, useEffect, useRef, useCallback } from "react";
 import { ConfigProvider } from "antd";
+import { usePathname } from "next/navigation";
+import JsonLd from "@/components/common/JsonLd";
+import { productSchema } from "@/modules/structuredData";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import ProductHero from "./ProductHero";
@@ -54,6 +57,7 @@ export default function ProductDetail({
   reviews,
   similarProducts,
 }: ProductDetailProps) {
+  const pathname = usePathname();
   const [activeTab, setActiveTab] = useState("specification");
   const [headerHeight, setHeaderHeight] = useState(0);
   const tabsRef = useRef<HTMLDivElement>(null);
@@ -122,6 +126,7 @@ export default function ProductDetail({
       }}
     >
       <Header breadcrumbs={breadcrumbs} />
+      {pathname && <JsonLd id="product-jsonld" data={productSchema({ title, images, price, status, productCode, brand, description, reviews }, pathname)} />}
 
       <main style={{ background: "#f1f3f7", minHeight: "60vh" }}>
         <div

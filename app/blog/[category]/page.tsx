@@ -2,6 +2,9 @@ import Image from "next/image";
 import Link from "next/link";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import JsonLd from "@/components/common/JsonLd";
+import { absoluteUrl } from "@/config/seo";
+import { organizationId } from "@/modules/structuredData";
 
 const categories: Record<
   string,
@@ -178,6 +181,20 @@ function ArticleDetail({ slug }: { slug: string }) {
   ];
   return (
     <>
+      <JsonLd id="article-jsonld" data={{
+        "@context": "https://schema.org",
+        "@type": "BlogPosting",
+        "@id": `${absoluteUrl(`/blog/${encodeURIComponent(slug)}`)}#article`,
+        url: absoluteUrl(`/blog/${encodeURIComponent(slug)}`),
+        mainEntityOfPage: { "@id": `${absoluteUrl(`/blog/${encodeURIComponent(slug)}`)}#webpage` },
+        headline: title,
+        image: [absoluteUrl(coverImage)],
+        dateModified: "2026-07-22",
+        author: { "@type": "Organization", name: "Nexora Tech Team", url: absoluteUrl("/blog/author/nexora-tech-team") },
+        publisher: { "@id": organizationId },
+        articleSection: "Buying Guides",
+        inLanguage: "en",
+      }} />
       <Header
         breadcrumbs={[
           { label: "Home", href: "/" },

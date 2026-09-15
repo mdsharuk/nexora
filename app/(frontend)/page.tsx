@@ -8,6 +8,8 @@ import FeaturedProducts from "@/components/home/FeaturedProducts";
 import StoreLocatorBanner from "@/components/home/StoreLocatorBanner";
 import SeoContent from "@/components/home/SeoContent";
 
+export const metadata = { alternates: { canonical: "/" } };
+
 export default function Home() {
   return (
     <>

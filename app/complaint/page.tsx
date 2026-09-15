@@ -1,6 +1,8 @@
 "use client";
 
 import { FormEvent, useState } from "react";
+import JsonLd from "@/components/common/JsonLd";
+import { pageSchema } from "@/modules/structuredData";
 
 export default function ComplaintPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -12,6 +14,7 @@ export default function ComplaintPage() {
 
   return (
     <main className="complaint-page">
+      <JsonLd id="page-jsonld" data={pageSchema("/complaint", "Complaint & Feedback")} />
       <section className="complaint-card" aria-labelledby="complaint-title">
         <header className="complaint-card__header">
           <span className="complaint-card__mark">N</span>

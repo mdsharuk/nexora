@@ -2,6 +2,15 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 ## Getting Started
 
+### Structured data / Google rich results
+
+Set `NEXT_PUBLIC_SITE_URL` to your live website origin before the production build.
+The development default is `http://localhost:3000`. See
+[structured data setup and validation](docs/structured-data.md) for page coverage,
+content limitations, and Google testing steps.
+
+Run the structured-data checks with `node --test scripts/structured-data.test.mjs`.
+
 First, run the development server:
 
 ```bash

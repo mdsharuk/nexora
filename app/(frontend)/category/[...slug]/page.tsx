@@ -17,6 +17,7 @@ export async function generateMetadata({ params }: CategoryPageProps): Promise<M
   const categoryName = titleFromSlug(slug);
 
   return {
+    alternates: { canonical: `/category/${slug.map(encodeURIComponent).join("/")}` },
     title: `${categoryName} Price in Bangladesh | Nexora Tech`,
     description: `Browse ${categoryName} products, prices, specifications, and offers at Nexora Tech.`,
   };
