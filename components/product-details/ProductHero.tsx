@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button, Flex, Image, Modal, Tag, Typography } from "antd";
 import {
   CheckCircleFilled,
@@ -47,6 +47,7 @@ export default function ProductHero({
   sharedData,
 }: ProductHeroProps) {
   const router = useRouter();
+  const pathname = usePathname();
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const [wishlisted, setWishlisted] = useState(false);
@@ -81,6 +82,8 @@ export default function ProductHero({
     price: String(price),
     quantity: String(quantity),
     image: images[selectedImage] ?? "",
+    model: keyFeatures.find((feature) => /^Model:/i.test(feature))?.replace(/^Model:\s*/i, "") ?? title,
+    productUrl: pathname,
   }).toString();
 
   return (
@@ -216,34 +219,12 @@ export default function ProductHero({
           </div>
         )}
 
-        {gift && (
-          <div
-            style={{
-              background: "linear-gradient(135deg, #ff4400, #ff6600)",
-              color: "#ffffff",
-              padding: "10px 16px",
-              borderRadius: 8,
-              marginBottom: 16,
-              display: "flex",
-              alignItems: "center",
-              gap: 10,
-              width: "fit-content",
-            }}
-          >
-            <span style={{ fontSize: 18 }}>🎁</span>
-            <div>
-              <div style={{ fontWeight: 700, fontSize: 13 }}>Free Gift</div>
-              <div style={{ fontSize: 12 }}>{gift.label}</div>
-            </div>
-          </div>
-        )}
-
-        <section className="product-purchase" aria-label="Purchase options">
+        <div className="product-gift-contacts">
           <div className="product-purchase__contacts">
             <a href="tel:+8801812345678" className="product-contact-link">
               <PhoneFilled />
               <span>Laptop Hotline</span>
-              <strong>+880 18*******</strong>
+              <strong>+880 1812345678</strong>
             </a>
             <a
               href="mailto:sales@nexoratech.com"
@@ -253,7 +234,29 @@ export default function ProductHero({
               <strong>sales@nexoratech.com</strong>
             </a>
           </div>
+          {gift && (
+            <div
+              style={{
+                background: "linear-gradient(135deg, #ff4400, #ff6600)",
+                color: "#ffffff",
+                padding: "10px 16px",
+                borderRadius: 8,
+                display: "flex",
+                alignItems: "center",
+                gap: 10,
+                width: "fit-content",
+              }}
+            >
+              <span style={{ fontSize: 18 }}>🎁</span>
+              <div>
+                <div style={{ fontWeight: 700, fontSize: 13 }}>Free Gift</div>
+                <div style={{ fontSize: 12 }}>{gift.label}</div>
+              </div>
+            </div>
+          )}
+        </div>
 
+        <section className="product-purchase" aria-label="Purchase options">
           <div className="product-purchase__price-grid">
             <div className="product-price-card">
               <Typography.Text className="product-price-card__label">
@@ -319,6 +322,7 @@ export default function ProductHero({
               type="primary"
               icon={<ShoppingCartOutlined />}
               size="large"
+              onClick={() => router.push(`/cart?${orderQuery}`)}
               style={{ flex: 1, minWidth: 0 }}
             >
               Add to Cart
@@ -463,14 +467,22 @@ export default function ProductHero({
             <div style={{ padding: "20px 4px 4px" }}>
               <Flex align="center" gap={12} justify="space-between" wrap="wrap">
                 <Flex align="center" gap={12} style={{ flex: "1 1 280px" }}>
-                  <CheckCircleFilled style={{ color: "#10b981", fontSize: 18 }} />
+                  <CheckCircleFilled
+                    style={{ color: "#10b981", fontSize: 18 }}
+                  />
                   <Typography.Text>
-                    You have added <span style={{ color: "#ff4400" }}>{title}</span> to your shopping cart!
+                    You have added{" "}
+                    <span style={{ color: "#ff4400" }}>{title}</span> to your
+                    shopping cart!
                   </Typography.Text>
                 </Flex>
                 <div className="buy-now-summary">
-                  <span>Cart quantity: <strong>{quantity}</strong></span>
-                  <span>Cart Total: <strong>{formatPrice(price * quantity)}</strong></span>
+                  <span>
+                    Cart quantity: <strong>{quantity}</strong>
+                  </span>
+                  <span>
+                    Cart Total: <strong>{formatPrice(price * quantity)}</strong>
+                  </span>
                 </div>
               </Flex>
 
@@ -478,7 +490,10 @@ export default function ProductHero({
                 <Button onClick={() => router.push(`/cart?${orderQuery}`)}>
                   View Cart
                 </Button>
-                <Button type="primary" onClick={() => router.push(`/checkout?${orderQuery}`)}>
+                <Button
+                  type="primary"
+                  onClick={() => router.push(`/checkout?${orderQuery}`)}
+                >
                   Confirm Order
                 </Button>
               </Flex>

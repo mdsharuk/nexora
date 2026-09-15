@@ -28,6 +28,9 @@ export default function ProductDescription({
           marginBottom: 16,
         }}
       >
+        <Typography.Title level={2} style={{ margin: "0 0 24px", fontSize: 20, fontWeight: 600, color: "#000000" }}>
+          Description
+        </Typography.Title>
         <Typography.Text strong style={{ fontSize: 15, display: "block", marginBottom: 12 }}>
           {title}
         </Typography.Text>

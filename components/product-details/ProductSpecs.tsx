@@ -18,21 +18,12 @@ export interface ProductSpecsProps {
 
 export default function ProductSpecs({ sections }: ProductSpecsProps) {
   return (
-    <div>
+    <div style={{ background: "#ffffff", border: "1px solid #e5e7eb", borderRadius: 8, padding: 20 }}>
+      <Typography.Title level={2} style={{ margin: "0 0 20px", fontSize: 20, fontWeight: 600, color: "#000000" }}>
+        Specification
+      </Typography.Title>
       {sections.map((section, si) => (
         <div key={si} style={{ marginBottom: si < sections.length - 1 ? 24 : 0 }}>
-          <Typography.Text
-            strong
-            style={{
-              color: "#ff4400",
-              fontSize: 13,
-              display: "block",
-              marginBottom: 8,
-              fontWeight: 600,
-            }}
-          >
-            {section.title}
-          </Typography.Text>
           <div
             style={{
               border: "1px solid #e5e7eb",

@@ -2,35 +2,25 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 const slides = [
   {
     id: 1,
-    title: "Intel Core i7 14th Gen",
-    subtitle: "Gaming Desktop PC",
-    description: "And Get Amazing Gifts",
-    bgColor: "#1a1a6e",
-    image: "/images/banner1.svg",
-    link: "/product/gaming-desktop-i7",
+    image: "/images/hero-banner1.webp",
+    alt: "Laptop Service",
+    link: "/service-center",
   },
   {
     id: 2,
-    title: "AMD Ryzen 9 Series",
-    subtitle: "Workstation Bundle",
-    description: "Free RAM + SSD Upgrade",
-    bgColor: "#8b0000",
-    image: "/images/banner2.svg",
-    link: "/product/workstation-ryzen9",
+    image: "/images/hero-banner2.webp",
+    alt: "Printer Service",
+    link: "/service-center",
   },
   {
     id: 3,
-    title: "NVIDIA RTX 4070",
-    subtitle: "Graphics Card Sale",
-    description: "Up to 20% Off Today",
-    bgColor: "#0a5c36",
-    image: "/images/banner3.svg",
-    link: "/product/rtx-4070",
+    image: "/images/hero-banner3.webp",
+    alt: "Mobile Service",
+    link: "/service-center",
   },
 ];
 
@@ -56,28 +46,15 @@ const HeroBanner: React.FC = () => {
               style={{ transform: `translateX(-${current * 100}%)` }}
             >
               {slides.map((slide) => (
-                <div
-                  key={slide.id}
-                  className="hero-slide"
-                  style={{ backgroundColor: slide.bgColor }}
-                >
-                  <div className="hero-slide-bg">
-                    <Image
+                <div key={slide.id} className="hero-slide">
+                  <Link href={slide.link} className="hero-slide-link">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
                       src={slide.image}
-                      alt={slide.title}
-                      fill
-                      style={{ objectFit: "cover" }}
-                      priority
+                      alt={slide.alt}
+                      className="hero-slide-img"
                     />
-                  </div>
-                  <div className="hero-slide-content">
-                    <p className="hero-slide-desc">{slide.description}</p>
-                    <h2 className="hero-slide-title">{slide.title}</h2>
-                    <h3 className="hero-slide-subtitle">{slide.subtitle}</h3>
-                    <Link href={slide.link} className="hero-slide-btn">
-                      Shop Now
-                    </Link>
-                  </div>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -95,19 +72,20 @@ const HeroBanner: React.FC = () => {
 
           <div className="hero-side">
             <Link href="/feedback" className="hero-side-banner hero-side-top">
-              <div className="hero-side-content">
-                <p className="hero-side-tagline">Share Your Feedback</p>
-                <h3 className="hero-side-title">Complaints or Suggestions</h3>
-                <span className="hero-side-btn">Let Us Know</span>
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/side-feedback.webp"
+                alt="Complaints or Suggestions"
+                className="hero-side-img"
+              />
             </Link>
             <Link href="/careers" className="hero-side-banner hero-side-bottom">
-              <div className="hero-side-content">
-                <span className="hero-side-badge">Apply Now</span>
-                <h3 className="hero-side-title">
-                  Shape Your<br />Career With Us!
-                </h3>
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/side-careers.webp"
+                alt="Shape Your Career With Us"
+                className="hero-side-img"
+              />
             </Link>
           </div>
         </div>

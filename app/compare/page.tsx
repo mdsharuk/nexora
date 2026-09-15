@@ -30,8 +30,10 @@ const allProducts = [
       CPU: "Intel Core i7-14700 14th Gen",
       RAM: "Corsair VENGEANCE RGB 16GB DDR5 6000MHz",
       Motherboard: "MSI PRO B760M-E DDR5 m-ATX",
-      "Graphics Card": "Colorful iGame GeForce RTX 3050 Ultra W DUO OC V2-V 8GB GDDR6",
-      Storage: "Corsair MP600 PRO LPX 2TB M.2 NVMe SSD + Kingston KC3000 1TB M.2 NVMe SSD",
+      "Graphics Card":
+        "Colorful iGame GeForce RTX 3050 Ultra W DUO OC V2-V 8GB GDDR6",
+      Storage:
+        "Corsair MP600 PRO LPX 2TB M.2 NVMe SSD + Kingston KC3000 1TB M.2 NVMe SSD",
       Casing: "Valour GC3 V2 ARGB Mid-Tower ATX Casing",
       "Power Supply": "Gamdias ASTROPE P2-650W 80+ Bronze Power Supply",
       "CPU Cooler": "DeepCool AG400 ARGB Tower CPU Air Cooler",
@@ -123,15 +125,29 @@ export default function ComparePage() {
               <div style={{ minWidth: 0 }}>
                 <Typography.Title
                   level={3}
-                  style={{ margin: 0, fontSize: isMobile ? 16 : 20, fontWeight: 700 }}
+                  style={{
+                    margin: 0,
+                    fontSize: isMobile ? 16 : 20,
+                    fontWeight: 700,
+                  }}
                 >
                   Product Comparison
                 </Typography.Title>
-                <Typography.Text style={{ fontSize: isMobile ? 11 : 13, color: "#6b7280" }}>
-                  Find and select products to see the differences and similarities between them
+                <Typography.Text
+                  style={{ fontSize: isMobile ? 11 : 13, color: "#6b7280" }}
+                >
+                  Find and select products to see the differences and
+                  similarities between them
                 </Typography.Text>
               </div>
-              <div style={{ display: "flex", gap: 8, alignItems: "center", flexShrink: 0 }}>
+              <div
+                style={{
+                  display: "flex",
+                  gap: 8,
+                  alignItems: "center",
+                  flexShrink: 0,
+                }}
+              >
                 <Button
                   icon={<PrinterOutlined />}
                   size={isMobile ? "small" : "middle"}
@@ -209,7 +225,9 @@ export default function ComparePage() {
                           allowClear
                           value={product.id}
                           size="middle"
-                          suffixIcon={<SearchOutlined style={{ color: "#9ca3af" }} />}
+                          suffixIcon={
+                            <SearchOutlined style={{ color: "#9ca3af" }} />
+                          }
                           onChange={(value) => {
                             if (!value) removeProduct(product.id);
                           }}
@@ -235,7 +253,9 @@ export default function ComparePage() {
                           style={{ width: "100%" }}
                           showSearch
                           size="middle"
-                          suffixIcon={<SearchOutlined style={{ color: "#9ca3af" }} />}
+                          suffixIcon={
+                            <SearchOutlined style={{ color: "#9ca3af" }} />
+                          }
                           disabled
                         >
                           {allProducts.map((p) => (
@@ -252,7 +272,9 @@ export default function ComparePage() {
                 <tbody>
                   {/* Product Images + Title + Price */}
                   <tr>
-                    <td style={{ padding: 0, borderBottom: "1px solid #e5e7eb" }} />
+                    <td
+                      style={{ padding: 0, borderBottom: "1px solid #e5e7eb" }}
+                    />
                     {compareProducts.map((product) => (
                       <td
                         key={product.id}
@@ -264,24 +286,57 @@ export default function ComparePage() {
                           verticalAlign: "top",
                         }}
                       >
-                        <div style={{ display: "flex", justifyContent: "center", marginBottom: 12, aspectRatio: "1 / 1", overflow: "hidden", maxHeight: 160 }}>
+                        <div
+                          style={{
+                            display: "flex",
+                            justifyContent: "center",
+                            marginBottom: 12,
+                            aspectRatio: "1 / 1",
+                            overflow: "hidden",
+                            maxHeight: 160,
+                          }}
+                        >
                           <Image
                             src={product.imageUrl}
                             alt={product.title}
                             preview={false}
-                            style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                            style={{
+                              width: "100%",
+                              height: "100%",
+                              objectFit: "contain",
+                            }}
                           />
                         </div>
                         <Link
                           href={product.productUrl}
-                          style={{ fontSize: 14, color: "#111111", fontWeight: 600, display: "block", marginBottom: 8, lineHeight: 1.4 }}
+                          style={{
+                            fontSize: 14,
+                            color: "#111111",
+                            fontWeight: 600,
+                            display: "block",
+                            marginBottom: 8,
+                            lineHeight: 1.4,
+                          }}
                         >
                           {product.title}
                         </Link>
-                        <div style={{ fontSize: 18, color: "#ff4400", fontWeight: 700 }}>
+                        <div
+                          style={{
+                            fontSize: 18,
+                            color: "#ff4400",
+                            fontWeight: 700,
+                          }}
+                        >
                           {formatPrice(product.price)}
                           {product.oldPrice && (
-                            <del style={{ color: "#9ca3af", fontSize: 12, fontWeight: 400, marginLeft: 8 }}>
+                            <del
+                              style={{
+                                color: "#9ca3af",
+                                fontSize: 12,
+                                fontWeight: 400,
+                                marginLeft: 8,
+                              }}
+                            >
                               {formatPrice(product.oldPrice)}
                             </del>
                           )}
@@ -337,7 +392,12 @@ export default function ComparePage() {
                         </td>
                       ))}
                       {compareProducts.length < 4 && (
-                        <td style={{ borderBottom: "1px solid #e5e7eb", borderLeft: "1px solid #e5e7eb" }} />
+                        <td
+                          style={{
+                            borderBottom: "1px solid #e5e7eb",
+                            borderLeft: "1px solid #e5e7eb",
+                          }}
+                        />
                       )}
                     </tr>
                   ))}
@@ -346,9 +406,16 @@ export default function ComparePage() {
                   <tr>
                     <td
                       colSpan={compareProducts.length + 2}
-                      style={{ padding: "14px 16px", background: "#f9fafb", borderBottom: "1px solid #e5e7eb" }}
+                      style={{
+                        padding: "14px 16px",
+                        background: "#f9fafb",
+                        borderBottom: "1px solid #e5e7eb",
+                      }}
                     >
-                      <Typography.Text strong style={{ color: "#ff4400", fontSize: 15 }}>
+                      <Typography.Text
+                        strong
+                        style={{ color: "#ff4400", fontSize: 15 }}
+                      >
                         Basic Information
                       </Typography.Text>
                     </td>
@@ -380,11 +447,17 @@ export default function ComparePage() {
                             lineHeight: 1.5,
                           }}
                         >
-                          {(product.specs as Record<string, string>)?.[key] || "-"}
+                          {(product.specs as Record<string, string>)?.[key] ||
+                            "-"}
                         </td>
                       ))}
                       {compareProducts.length < 4 && (
-                        <td style={{ borderBottom: "1px solid #e5e7eb", borderLeft: "1px solid #e5e7eb" }} />
+                        <td
+                          style={{
+                            borderBottom: "1px solid #e5e7eb",
+                            borderLeft: "1px solid #e5e7eb",
+                          }}
+                        />
                       )}
                     </tr>
                   ))}
@@ -395,7 +468,12 @@ export default function ComparePage() {
                     {compareProducts.map((product) => (
                       <td
                         key={product.id}
-                        style={{ padding: "16px", borderBottom: "none", borderLeft: "1px solid #e5e7eb", textAlign: "center" }}
+                        style={{
+                          padding: "16px",
+                          borderBottom: "none",
+                          borderLeft: "1px solid #e5e7eb",
+                          textAlign: "center",
+                        }}
                       >
                         <Link href={product.productUrl}>
                           <Button
@@ -403,7 +481,13 @@ export default function ComparePage() {
                             icon={<ShoppingCartOutlined />}
                             size="large"
                             block
-                            style={{ background: "#ff4400", borderColor: "#ff4400", fontWeight: 600, maxWidth: 240, margin: "0 auto" }}
+                            style={{
+                              background: "#ff4400",
+                              borderColor: "#ff4400",
+                              fontWeight: 600,
+                              maxWidth: 240,
+                              margin: "0 auto",
+                            }}
                           >
                             Buy Now
                           </Button>
@@ -419,12 +503,23 @@ export default function ComparePage() {
               <div style={{ padding: "12px 16px" }}>
                 {/* Mobile Selector Row */}
                 <div style={{ marginBottom: 12 }}>
-                  <div style={{ fontSize: 12, color: "#6b7280", marginBottom: 8 }}>
+                  <div
+                    style={{ fontSize: 12, color: "#6b7280", marginBottom: 8 }}
+                  >
                     You can add Max 4 Products
                   </div>
-                  <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                  <div
+                    style={{ display: "flex", flexDirection: "column", gap: 8 }}
+                  >
                     {compareProducts.map((product) => (
-                      <div key={product.id} style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                      <div
+                        key={product.id}
+                        style={{
+                          display: "flex",
+                          alignItems: "center",
+                          gap: 6,
+                        }}
+                      >
                         <Select
                           placeholder="Search and Select Product"
                           style={{ flex: 1 }}
@@ -432,7 +527,9 @@ export default function ComparePage() {
                           allowClear
                           value={product.id}
                           size="small"
-                          suffixIcon={<SearchOutlined style={{ color: "#9ca3af" }} />}
+                          suffixIcon={
+                            <SearchOutlined style={{ color: "#9ca3af" }} />
+                          }
                           onChange={(value) => {
                             if (!value) removeProduct(product.id);
                           }}
@@ -461,35 +558,80 @@ export default function ComparePage() {
                     }}
                   >
                     {/* Product Image */}
-                    <div style={{ display: "flex", justifyContent: "center", marginBottom: 12, aspectRatio: "1 / 1", overflow: "hidden", maxHeight: 120 }}>
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        marginBottom: 12,
+                        aspectRatio: "1 / 1",
+                        overflow: "hidden",
+                        maxHeight: 120,
+                      }}
+                    >
                       <Image
                         src={product.imageUrl}
                         alt={product.title}
                         preview={false}
-                        style={{ width: "100%", height: "100%", objectFit: "contain" }}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "contain",
+                        }}
                       />
                     </div>
 
                     {/* Product Title */}
                     <Link
                       href={product.productUrl}
-                      style={{ fontSize: 14, color: "#111111", fontWeight: 600, display: "block", marginBottom: 8, lineHeight: 1.4, textAlign: "center" }}
+                      style={{
+                        fontSize: 14,
+                        color: "#111111",
+                        fontWeight: 600,
+                        display: "block",
+                        marginBottom: 8,
+                        lineHeight: 1.4,
+                        textAlign: "center",
+                      }}
                     >
                       {product.title}
                     </Link>
 
                     {/* Price */}
-                    <div style={{ fontSize: 16, color: "#ff4400", fontWeight: 700, textAlign: "center", marginBottom: 12 }}>
+                    <div
+                      style={{
+                        fontSize: 16,
+                        color: "#ff4400",
+                        fontWeight: 700,
+                        textAlign: "center",
+                        marginBottom: 12,
+                      }}
+                    >
                       {formatPrice(product.price)}
                       {product.oldPrice && (
-                        <del style={{ color: "#9ca3af", fontSize: 11, fontWeight: 400, marginLeft: 6 }}>
+                        <del
+                          style={{
+                            color: "#9ca3af",
+                            fontSize: 11,
+                            fontWeight: 400,
+                            marginLeft: 6,
+                          }}
+                        >
                           {formatPrice(product.oldPrice)}
                         </del>
                       )}
                     </div>
 
                     {/* Basic Info */}
-                    <div style={{ fontSize: 13, color: "#ff4400", fontWeight: 600, marginBottom: 8, paddingBottom: 6, borderBottom: "1px solid #e5e7eb" }}>
+                    <div
+                      style={{
+                        fontSize: 13,
+                        color: "#ff4400",
+                        fontWeight: 600,
+                        marginBottom: 8,
+                        paddingBottom: 6,
+                        borderBottom: "1px solid #e5e7eb",
+                      }}
+                    >
                       Basic Information
                     </div>
                     {["Model", "Brand", "Availability"].map((label) => (
@@ -503,7 +645,9 @@ export default function ComparePage() {
                           fontSize: 12,
                         }}
                       >
-                        <span style={{ color: "#6b7280", fontWeight: 500 }}>{label}</span>
+                        <span style={{ color: "#6b7280", fontWeight: 500 }}>
+                          {label}
+                        </span>
                         <span style={{ color: "#111111" }}>
                           {label === "Model"
                             ? product.specs?.Model || "-"
@@ -515,7 +659,17 @@ export default function ComparePage() {
                     ))}
 
                     {/* Specs */}
-                    <div style={{ fontSize: 13, color: "#ff4400", fontWeight: 600, marginTop: 12, marginBottom: 8, paddingBottom: 6, borderBottom: "1px solid #e5e7eb" }}>
+                    <div
+                      style={{
+                        fontSize: 13,
+                        color: "#ff4400",
+                        fontWeight: 600,
+                        marginTop: 12,
+                        marginBottom: 8,
+                        paddingBottom: 6,
+                        borderBottom: "1px solid #e5e7eb",
+                      }}
+                    >
                       Specifications
                     </div>
                     {specKeys.map((key) => (
@@ -530,9 +684,18 @@ export default function ComparePage() {
                           gap: 8,
                         }}
                       >
-                        <span style={{ color: "#6b7280", fontWeight: 500, flexShrink: 0 }}>{key}</span>
+                        <span
+                          style={{
+                            color: "#6b7280",
+                            fontWeight: 500,
+                            flexShrink: 0,
+                          }}
+                        >
+                          {key}
+                        </span>
                         <span style={{ color: "#111111", textAlign: "right" }}>
-                          {(product.specs as Record<string, string>)?.[key] || "-"}
+                          {(product.specs as Record<string, string>)?.[key] ||
+                            "-"}
                         </span>
                       </div>
                     ))}
@@ -544,7 +707,11 @@ export default function ComparePage() {
                           type="primary"
                           icon={<ShoppingCartOutlined />}
                           block
-                          style={{ background: "#ff4400", borderColor: "#ff4400", fontWeight: 600 }}
+                          style={{
+                            background: "#ff4400",
+                            borderColor: "#ff4400",
+                            fontWeight: 600,
+                          }}
                         >
                           Buy Now
                         </Button>

@@ -55,35 +55,55 @@ export default function ProductDetail({
   similarProducts,
 }: ProductDetailProps) {
   const [activeTab, setActiveTab] = useState("specification");
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const tabsRef = useRef<HTMLDivElement>(null);
   const sectionRefs = useRef<Record<string, HTMLElement | null>>({});
+
+  useEffect(() => {
+    const header = document.querySelector<HTMLElement>(".header-wrapper");
+    if (!header) return;
+
+    const updateHeight = () => setHeaderHeight(header.getBoundingClientRect().height);
+    updateHeight();
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(header);
+    return () => observer.disconnect();
+  }, []);
+
+  const getScrollOffset = useCallback(
+    () => headerHeight + (tabsRef.current?.getBoundingClientRect().height ?? 0) + 16,
+    [headerHeight],
+  );
 
   const scrollToSection = useCallback((id: string) => {
     setActiveTab(id);
     const el = sectionRefs.current[id];
     if (el) {
-      const offset = 80;
+      const offset = getScrollOffset();
       const top = el.getBoundingClientRect().top + window.pageYOffset - offset;
       window.scrollTo({ top, behavior: "smooth" });
     }
-  }, []);
+  }, [getScrollOffset]);
 
   useEffect(() => {
     const handleScroll = () => {
+      const offset = getScrollOffset();
       const tabs = ["specification", "description", "questions", "reviews"];
       for (const id of tabs) {
         const el = sectionRefs.current[id];
         if (el) {
           const rect = el.getBoundingClientRect();
-          if (rect.top <= 100 && rect.bottom > 100) {
+          if (rect.top <= offset + 1 && rect.bottom > offset) {
             setActiveTab(id);
             break;
           }
         }
       }
     };
+    handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [getScrollOffset]);
 
   const tabs = [
     { id: "specification", label: "Specification" },
@@ -102,15 +122,6 @@ export default function ProductDetail({
       }}
     >
       <Header breadcrumbs={breadcrumbs} />
-
-      <div
-        style={{
-          width: "calc(100% - 32px)",
-          maxWidth: 1320,
-          margin: "0 auto",
-          padding: "16px 0",
-        }}
-      ></div>
 
       <main style={{ background: "#f1f3f7", minHeight: "60vh" }}>
         <div
@@ -147,15 +158,16 @@ export default function ProductDetail({
         <div style={{ display: "flex", gap: 20, flexWrap: "wrap" }}>
           <div style={{ flex: "1 1 400px", minWidth: 0 }}>
             <div
+              ref={tabsRef}
               style={{
                 display: "flex",
                 flexWrap: "wrap",
                 gap: 0,
                 marginBottom: 20,
                 position: "sticky",
-                top: 0,
+                top: headerHeight,
                 zIndex: 10,
-                background: "#f1f3f7",
+                background: "#ffffff",
                 paddingTop: 8,
               }}
             >

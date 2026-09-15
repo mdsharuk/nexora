@@ -1,7 +1,7 @@
 "use client";
 
 import { Button, Empty, Typography } from "antd";
-import { MessageOutlined } from "@ant-design/icons";
+import { MessageFilled } from "@ant-design/icons";
 
 export interface Question {
   id: string | number;
@@ -26,11 +26,17 @@ export default function ProductQuestions({ questions, productName }: ProductQues
         padding: 20,
       }}
     >
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-        <Typography.Text strong style={{ fontSize: 15 }}>
+      <div className="product-feedback__header">
+        <div>
+        <Typography.Title level={2} style={{ margin: "0 0 8px", fontSize: 20, fontWeight: 600, color: "#000000" }}>
           Questions ({questions.length})
-        </Typography.Text>
+        </Typography.Title>
+        <Typography.Paragraph style={{ fontSize: 14, color: "#6b7280", margin: 0 }}>
+          Have question about this product? Get specific details about this product from expert.
+        </Typography.Paragraph>
+        </div>
         <Button
+          className="product-feedback__action"
           style={{
             borderColor: "#ff4400",
             color: "#ff4400",
@@ -42,15 +48,13 @@ export default function ProductQuestions({ questions, productName }: ProductQues
         </Button>
       </div>
 
-      <Typography.Paragraph style={{ fontSize: 13, color: "#6b7280", marginBottom: 16 }}>
-        Have question about this product? Get specific details about this product from expert.
-      </Typography.Paragraph>
-
       {questions.length === 0 ? (
         <Empty
-          image={<MessageOutlined style={{ fontSize: 48, color: "#d1d5db" }} />}
+          className="product-feedback__empty"
+          image={<span className="product-feedback__icon"><MessageFilled /></span>}
+          styles={{ image: { height: 88, marginBottom: 20 } }}
           description={
-            <span style={{ color: "#9ca3af", fontSize: 13 }}>
+            <span style={{ color: "#6b7280", fontSize: 14 }}>
               There are no questions asked yet. Be the first one to ask a question.
             </span>
           }

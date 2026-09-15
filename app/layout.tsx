@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" data-scroll-behavior="smooth">
       <body suppressHydrationWarning>
         <ClientProviders>
           <div className="app-shell">{children}</div>

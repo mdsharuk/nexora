@@ -60,26 +60,28 @@ const Header: React.FC<HeaderProps> = ({ breadcrumbs }) => {
   const isMobile = viewMode === "mobile";
 
   return (
-    <header className="header-wrapper">
-      {isDesktop ? (
-        <>
-          <TopHeader />
-          <MainNav items={menuData} />
-        </>
-      ) : (
-        <MobileHeader onMenuToggle={handleMobileMenuToggle} />
-      )}
+    <>
+      <header className="header-wrapper">
+        {isDesktop ? (
+          <>
+            <TopHeader />
+            <MainNav items={menuData} />
+          </>
+        ) : (
+          <MobileHeader onMenuToggle={handleMobileMenuToggle} />
+        )}
 
-      <MobileDrawer
-        isOpen={isMobileMenuOpen}
-        onClose={handleMobileMenuClose}
-        items={menuData}
-      />
+        <MobileDrawer
+          isOpen={isMobileMenuOpen}
+          onClose={handleMobileMenuClose}
+          items={menuData}
+        />
+
+        {(isTablet || isMobile) && <BottomNav />}
+      </header>
 
       {breadcrumbs && <Breadcrumb items={breadcrumbs} />}
-
-      {(isTablet || isMobile) && <BottomNav />}
-    </header>
+    </>
   );
 };
 

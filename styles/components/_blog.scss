@@ -320,14 +320,27 @@
   font-size: 12px;
 }
 .article-detail__share {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-top: 18px;
   color: #01243a;
   font-size: 13px;
   font-weight: 700;
 }
-.article-detail__share span {
-  margin-left: 10px;
+.article-detail__share > span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #fff0eb;
   color: #ff4400;
+  font-size: 22px;
+  line-height: 1;
 }
 .article-detail__topic {
   margin-top: 26px;

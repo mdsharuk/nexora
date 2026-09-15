@@ -2,7 +2,13 @@
 
 import React from "react";
 import { CompareProvider } from "@/contexts/CompareContext";
+import ScrollToTop from "./ScrollToTop";
 
 export default function ClientProviders({ children }: { children: React.ReactNode }) {
-  return <CompareProvider>{children}</CompareProvider>;
+  return (
+    <CompareProvider>
+      <ScrollToTop />
+      {children}
+    </CompareProvider>
+  );
 }
