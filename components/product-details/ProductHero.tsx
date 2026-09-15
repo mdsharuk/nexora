@@ -82,7 +82,10 @@ export default function ProductHero({
     price: String(price),
     quantity: String(quantity),
     image: images[selectedImage] ?? "",
-    model: keyFeatures.find((feature) => /^Model:/i.test(feature))?.replace(/^Model:\s*/i, "") ?? title,
+    model:
+      keyFeatures
+        .find((feature) => /^Model:/i.test(feature))
+        ?.replace(/^Model:\s*/i, "") ?? title,
     productUrl: pathname,
   }).toString();
 
@@ -223,7 +226,7 @@ export default function ProductHero({
           <div className="product-purchase__contacts">
             <a href="tel:+8801812345678" className="product-contact-link">
               <PhoneFilled />
-              <span>Laptop Hotline</span>
+              <span>Hotline</span>
               <strong>+880 1812345678</strong>
             </a>
             <a

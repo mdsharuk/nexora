@@ -7,7 +7,9 @@
   padding-bottom: 24px;
   border-bottom: 1px solid #eef0f3;
 
-  > div { flex: 1 1 280px; }
+  > div {
+    flex: 1 1 280px;
+  }
 }
 
 .product-feedback__action.ant-btn {
@@ -40,8 +42,7 @@
 .product-gift-contacts {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
+  align-items: stretch;
   gap: 16px 24px;
   margin-bottom: 16px;
 }
@@ -50,24 +51,26 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 8px;
-  padding: 10px 16px;
-  border: 1px solid #e5e7eb;
-  border-radius: 8px;
+  gap: 2px;
+  background: transparent;
 }
 
 .product-contact-link {
   display: inline-flex;
   align-items: center;
   gap: 7px;
-  padding: 0;
-  color: #374151;
+  padding: 8px 12px;
+  border: 1px solid #dbe3ed;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #475569;
   font-size: 14px;
+  overflow-wrap: anywhere;
   transition: color 0.2s;
 
   .anticon,
   strong {
-    color: #ff4400;
+    color: #143b75;
   }
 
   span {
@@ -76,8 +79,13 @@
 
   &:hover,
   &:focus-visible {
-    color: #ff4400;
-    outline: none;
+    color: #143b75;
+    border-color: #143b75;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #143b75;
+    outline-offset: 2px;
   }
 }
 
